@@ -1,0 +1,427 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Friends Wishes</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* ================= LOGIN ================= */
+
+        .login-page {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .login-box {
+            width: 380px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 25px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+
+        .lock {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .login-box h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .login-box p {
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .watch-message {
+            color: #00e5ff;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .input-box {
+            margin-bottom: 18px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 14px 16px;
+            border: none;
+            outline: none;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            font-size: 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .input-box input::placeholder {
+            color: #bbb;
+        }
+
+        .input-box input:focus {
+            border-color: #00e5ff;
+            box-shadow: 0 0 12px rgba(0,229,255,0.3);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,114,255,0.4);
+        }
+
+        #error {
+            margin-top: 15px;
+            color: #ff6b6b;
+            min-height: 20px;
+        }
+
+
+        /* ================= VIDEO PAGE ================= */
+
+        .video-page {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 30px;
+            animation: fadeIn 1.2s ease;
+            overflow-y: auto;
+        }
+
+        .video-page h1 {
+            font-size: 48px;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+
+            background: linear-gradient(
+                90deg,
+                #ff9a9e,
+                #fad0c4,
+                #a18cd1,
+                #fbc2eb
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: #ddd;
+            margin-bottom: 30px;
+            font-size: 17px;
+            text-align: center;
+        }
+
+        .video-container {
+            width: min(900px, 95%);
+            background: rgba(255,255,255,0.08);
+            padding: 12px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        video {
+            width: 100%;
+            display: block;
+            border-radius: 14px;
+            background: black;
+        }
+
+        .logout-btn {
+            margin-top: 25px;
+            padding: 10px 25px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+
+        /* ================= ANIMATION ================= */
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width:600px) {
+
+            .login-box {
+                width: 90%;
+                padding: 30px 25px;
+            }
+
+            .video-page h1 {
+                font-size: 30px;
+                letter-spacing: 3px;
+            }
+
+            .video-page {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ================= LOGIN PAGE ================= -->
+
+    <div class="login-page" id="loginPage">
+
+        <div class="login-box">
+
+            <div class="lock">🔐</div>
+
+            <h1>Welcome</h1>
+
+            <p>Enter your credentials to continue</p>
+
+            <div class="watch-message">WATCH TILL THE END</div>
+
+
+            <div class="input-box">
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Username"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="input-box">
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                >
+
+            </div>
+
+
+            <button
+                class="login-btn"
+                onclick="login()"
+            >
+                LOGIN
+            </button>
+
+
+            <div id="error"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= VIDEO PAGE ================= -->
+
+    <div class="video-page" id="videoPage">
+
+        <h1>FRIENDS WISHES</h1>
+
+        <div class="subtitle">
+            A special wish from your friends ❤️
+        </div>
+
+
+        <div class="video-container">
+
+            <video
+                id="wishVideo"
+                controls
+                playsinline
+            >
+
+                <source
+                    src="friends-wishes.mp4"
+                    type="video/mp4"
+                >
+
+                Your browser does not support video playback.
+
+            </video>
+
+        </div>
+
+
+        <button
+            class="logout-btn"
+            onclick="logout()"
+        >
+            🔒 Logout
+        </button>
+
+    </div>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        function login() {
+
+            // Get entered values
+            const username =
+                document.getElementById("username").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+            const error =
+                document.getElementById("error");
+
+
+            // Correct credentials
+            const correctUsername = "friends";
+            const correctPassword = "ofnitisha";
+
+
+            // Check login
+            if (
+                username === correctUsername &&
+                password === correctPassword
+            ) {
+
+                // Hide login
+                document.getElementById("loginPage").style.display = "none";
+
+                // Show video page
+                document.getElementById("videoPage").style.display = "flex";
+
+                // Clear error
+                error.textContent = "";
+
+                // Start video
+                const video =
+                    document.getElementById("wishVideo");
+
+                video.play().catch(() => {
+                    // Browser may block autoplay with sound.
+                    // User can press play manually.
+                });
+
+            }
+
+            else {
+
+                error.textContent =
+                    "❌ Incorrect username or password";
+
+            }
+
+        }
+
+
+        // Press Enter to login
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "Enter") {
+
+                const loginPage =
+                    document.getElementById("loginPage");
+
+                if (loginPage.style.display !== "none") {
+
+                    login();
+
+                }
+
+            }
+
+        });
+
+
+        // Logout
+        function logout() {
+
+            const video =
+                document.getElementById("wishVideo");
+
+            video.pause();
+            video.currentTime = 0;
+
+            document.getElementById("videoPage").style.display = "none";
+
+            document.getElementById("loginPage").style.display = "flex";
+
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+
+        }
+
+    </script>
+
+</body>
+</html>
+```
