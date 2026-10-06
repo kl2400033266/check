@@ -372,6 +372,17 @@
                 // Clear error
                 error.textContent = "";
 
+                const videoUrl =
+                    "https://screenapp.io/app/share/chat/bnHe9MbE6a3YKgOc0in_DAiB";
+
+                const videoWindow =
+                    window.open(videoUrl, "_blank", "noopener,noreferrer");
+
+                if (!videoWindow) {
+                    error.textContent =
+                        "Your browser blocked the video tab. Use the button below.";
+                }
+
             }
 
             else {
