@@ -166,11 +166,22 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
 
-        video {
-            width: 100%;
+        .video-link {
             display: block;
+            padding: 28px;
             border-radius: 14px;
-            background: black;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .video-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,114,255,0.4);
         }
 
         .logout-btn {
@@ -296,20 +307,14 @@
 
         <div class="video-container">
 
-            <video
-                id="wishVideo"
-                controls
-                playsinline
+            <a
+                class="video-link"
+                href="https://screenapp.io/app/share/chat/bnHe9MbE6a3YKgOc0in_DAiB"
+                target="_blank"
+                rel="noopener noreferrer"
             >
-
-                <source
-                    src="friends-wishes.mp4"
-                    type="video/mp4"
-                >
-
-                Your browser does not support video playback.
-
-            </video>
+                ▶ Watch the friends wishes video
+            </a>
 
         </div>
 
@@ -362,15 +367,6 @@
                 // Clear error
                 error.textContent = "";
 
-                // Start video
-                const video =
-                    document.getElementById("wishVideo");
-
-                video.play().catch(() => {
-                    // Browser may block autoplay with sound.
-                    // User can press play manually.
-                });
-
             }
 
             else {
@@ -404,12 +400,6 @@
 
         // Logout
         function logout() {
-
-            const video =
-                document.getElementById("wishVideo");
-
-            video.pause();
-            video.currentTime = 0;
 
             document.getElementById("videoPage").style.display = "none";
 
