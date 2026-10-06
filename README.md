@@ -1,7 +1,7 @@
 # Friends Wishes
 
-This is a static website. The browser loads `index.html` and the video from
-`friends-wishes.mp4` in the same folder.
+This is a static website. The browser loads `index.html`, and the video opens
+from its hosted ScreenApp link.
 
 ## Run locally
 
@@ -15,22 +15,15 @@ Then open <http://localhost:8000>.
 
 ## Deploy
 
-Upload both files to any static web host and make sure the files stay at these
-paths:
+Upload these files to any static web host:
 
 ```text
 index.html
-friends-wishes.mp4
 ```
 
 The page can be deployed using Netlify, Vercel, Cloudflare Pages, Firebase
-Hosting, or any normal web server. If the host has a file-size limit, upload
-`friends-wishes.mp4` to object storage or a video host and change the
-`<source src="friends-wishes.mp4">` path in `index.html` to the video's public
-URL.
-
-The video is approximately 286 MB, so it is too large for several Git-based
-hosting workflows. Hosting the video separately is the most portable option.
+Hosting, or any normal web server. The video is hosted separately and is
+opened by the link in `index.html`.
 
 ## Important security note
 
